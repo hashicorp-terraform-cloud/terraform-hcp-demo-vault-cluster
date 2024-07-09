@@ -28,7 +28,7 @@ variable "cluster_ip_allowlist" {
   }))
   default = [{
     address     = "0.0.0.0/0",
-    description = "Allow all traffic"
+    description = "allow all traffic"
     }
   ]
 }
