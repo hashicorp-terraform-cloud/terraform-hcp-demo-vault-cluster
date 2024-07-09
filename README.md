@@ -20,7 +20,7 @@ The following environment variables should be captured either locally (for local
 
 The HCP Project ID can be captured from the Project Settings page - https://developer.hashicorp.com/hcp/docs/hcp/admin/projects#create-a-project
 
-## Usage
+## Local Usage
 
 1. Clone the repository:
 
