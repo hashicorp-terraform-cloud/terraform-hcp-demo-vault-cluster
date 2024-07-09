@@ -20,6 +20,44 @@ The following environment variables should be captured either locally (for local
 
 The HCP Project ID can be captured from the Project Settings page - https://developer.hashicorp.com/hcp/docs/hcp/admin/projects#create-a-project
 
+
+## HCP Terraform Usage
+
+1. **Sign up for HCP Terraform**: If you haven't already, sign up for a Terraform Cloud account at https://app.terraform.io/signup/account.
+
+2. **Create a new Workspace**: Navigate to the Workspaces section in the Terraform Cloud dashboard and click on "New Workspace". Choose the "Version control workflow" option.
+
+
+3. **Connect to Version Control System (VCS)**: Select your VCS (like GitHub, GitLab, Bitbucket, etc.) and authorise Terraform Cloud to access your repositories.
+
+4. **Select your Repository**: Choose the repository where your Terraform configuration is located: 
+
+    ```bash
+    https://github.com/hashicorp-terraform-cloud/terraform-hcp-demo-vault-cluster
+    ```
+
+5. **Configure Settings**: Give your workspace a name, and configure the Terraform version and other settings as per your requirements.
+
+6. **Add Mandatory Variables**: Navigate to the "Variables" section of your workspace and add your mandatory Terraform variables. For sensitive values like API keys, make sure to mark them as sensitive.
+
+    ```bash
+    cluster_id = ...
+    hvn_cidr_block = ...
+    ```
+7. **Add Optional Variables**: Navigate to the "Variables" section of your workspace and add your optional Terraform variables. For sensitive values like API keys, make sure to mark them as sensitive.
+
+    ```bash
+    cluster_ip_allowlist = ...
+    ```
+
+8. **Queue a Plan**: Click on "Queue Plan" to have Terraform Cloud run `terraform plan` on your configuration.
+
+9. **Apply the Plan**: If the plan looks good, click on "Confirm & Apply" to have Terraform Cloud run `terraform apply`.
+
+Remember to check the "Runs" section of your workspace to monitor the progress of your plans and applies.
+
+For more detailed instructions, refer to the [HCP Terraform documentation](https://developer.hashicorp.com/terraform/cloud-docs).
+
 ## Local Usage
 
 1. Clone the repository:
@@ -63,7 +101,7 @@ The HCP Project ID can be captured from the Project Settings page - https://deve
 
 | Name | Version |
 |------|---------|
-| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | ~> 0.94.1 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.94.1 |
 
 ## Modules
 
@@ -87,7 +125,7 @@ No modules.
 | <a name="input_cluster_ip_allowlist"></a> [cluster\_ip\_allowlist](#input\_cluster\_ip\_allowlist) | list of objects containing address and description for the ip allowlist | <pre>list(object({<br>    address     = string<br>    description = string<br>  }))</pre> | <pre>[<br>  {<br>    "address": "0.0.0.0/0",<br>    "description": "allow all traffic"<br>  }<br>]</pre> | no |
 | <a name="input_cluster_tier"></a> [cluster\_tier](#input\_cluster\_tier) | value of the tier for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#tier for more information. | `string` | `"standard_small"` | no |
 | <a name="input_expose_public_endpoint"></a> [expose\_public\_endpoint](#input\_expose\_public\_endpoint) | value of the public endpoint for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#public_endpoint for more information. | `bool` | `true` | no |
-| <a name="input_hvn_cidr_block"></a> [hvn\_cidr\_block](#input\_hvn\_cidr\_block) | the cidr block for the hashicorp virtual network. should not overlap with any existing networks for peering purposes. | `string` | n/a | yes |
+| <a name="input_hvn_cidr_block"></a> [hvn\_cidr\_block](#input\_hvn\_cidr\_block) | The CIDR block for the HashiCorp Virtual Network. Should not overlap with any existing networks for peering purposes. | `string` | n/a | yes |
 
 ## Outputs
 
