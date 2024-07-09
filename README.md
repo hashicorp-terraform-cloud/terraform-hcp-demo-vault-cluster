@@ -1,4 +1,4 @@
-# Terraform HCP Demo Vault Cluster
+# HCP Vault Dedicated - Terraform Demo
 
 This repository contains Terraform code to provision an HashiCorp Vault Dedicated cluster on HashiCorp Cloud Platform (HCP).
 
