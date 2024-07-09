@@ -1,6 +1,6 @@
 # Create the HashiCorp Virtual Network
 resource "hcp_hvn" "hcp-hvn" {
-  hvn_id         = "hvn-${var.cloud_provider}"
+  hvn_id         = "hvn-${var.cloud_provider}-${var.cloud_region}"
   cloud_provider = var.cloud_provider
   region         = var.cloud_region
   cidr_block     = var.hvn_cidr_block
