@@ -7,6 +7,19 @@ This repository contains Terraform code to provision an HashiCorp Vault Dedicate
 - Terraform 1.7.x or later
 - An HCP account
 
+### An HCP Project-level Service Principal 
+This should be a Project-level Service Principal with Contributor rights as per https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals
+
+The following environment variables should be captured either locally (for local execution) or in a HCP Terraform Variable Set (for remote execution)
+
+   ```bash
+   HCP_CLIENT_ID = ...
+   HCP_CLIENT_SECRET = ...
+   HCP_PROJECT_ID = ...
+   ```
+
+The HCP Project ID can be captured from the Project Settings page - https://developer.hashicorp.com/hcp/docs/hcp/admin/projects#create-a-project
+
 ## Usage
 
 1. Clone the repository:
