@@ -17,7 +17,7 @@ variable "hvn_cidr_block" {
   }
 
   validation {
-    condition     = cidrhost(var.hvn_cidr_block, 0) == element(split("/", var.hvn_cidr_block), 0)
+    condition     = can(cidrhost(var.hvn_cidr_block, 0)) && cidrhost(var.hvn_cidr_block, 0) == element(split("/", var.hvn_cidr_block), 0)
     error_message = "The CIDR block value must be the first IP address of the desired CIDR block."
   }
 
