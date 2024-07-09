@@ -17,7 +17,7 @@ variable "hvn_cidr_block" {
   }
 
   validation {
-    condition     = cidrhost(var.hvn_cidr_block, 0) == var.hvn_cidr_block
+    condition     = var.hvn_cidr_block == cidrsubnet(var.hvn_cidr_block, 0, 0)
     error_message = "The CIDR block value must be the first IP address of the desired CIDR block."
   }
 
