@@ -12,12 +12,12 @@ variable "hvn_cidr_block" {
   type        = string
 
   validation {
-    condition     = can(cidrsubnet(var.hvn_cidr_block, 0, 0))
+    condition     = can(try(cidrsubnet(var.hvn_cidr_block, 0, 0), false))
     error_message = "The CIDR block value must be a valid subnet."
   }
 
   validation {
-    condition     = var.hvn_cidr_block == cidrsubnet(var.hvn_cidr_block, 0, 0)
+    condition     = var.hvn_cidr_block == try(cidrsubnet(var.hvn_cidr_block, 0, 0), "")
     error_message = "The CIDR block value must be the first IP address of the desired CIDR block."
   }
 
