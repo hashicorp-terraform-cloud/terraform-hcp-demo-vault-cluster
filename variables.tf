@@ -1,3 +1,12 @@
+/**
+CIDR Block Recommendations
+
+If the CIDR block values for your HVN and VNets overlap, then you will not be able to establish a connection. Ensure that any VNets you plan to connect do not have overlapping values.
+The default HVN CIDR block value does not overlap with the default CIDR block value for Azure VNets (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.
+The CIDR block value must be a private IPv4 CIDR block within the RFC1918 address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).
+The CIDR block value must be the first IP address of the desired CIDR block.
+The CIDR block value must end between /16 and /25.
+**/
 variable "hvn_cidr_block" {
   description = "The CIDR block for the HashiCorp Virtual Network. Should not overlap with any existing networks for peering purposes."
   type        = string
@@ -8,22 +17,13 @@ variable "hvn_cidr_block" {
   }
 
   validation {
-    condition     = cidrsubnet(var.hvn_cidr_block, 0, 0) >= 16 && cidrsubnet(var.hvn_cidr_block, 0, 0) <= 25
-    error_message = "The CIDR block value must end between /16 and /25."
-  }
-
-  validation {
     condition     = cidrhost(var.hvn_cidr_block, 0) == var.hvn_cidr_block
     error_message = "The CIDR block value must be the first IP address of the desired CIDR block."
   }
 
   validation {
-    condition = (
-      cidrsubnet(var.hvn_cidr_block, 0, 0) == 10 ||
-      cidrsubnet(var.hvn_cidr_block, 0, 0) == 192 ||
-      (cidrsubnet(var.hvn_cidr_block, 0, 0) >= 172 && cidrsubnet(var.hvn_cidr_block, 0, 0) <= 31)
-    )
-    error_message = "The CIDR block value must be a private IPv4 CIDR block within the RFC1918 address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*)."
+    condition     = can(regex("^.*\\/(1[6-9]|2[0-5])$", var.hvn_cidr_block))
+    error_message = "The CIDR block value must end between /16 and /25."
   }
 }
 
