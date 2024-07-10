@@ -96,12 +96,14 @@ For more detailed instructions, refer to the [HCP Terraform documentation](https
 | Name | Version |
 |------|---------|
 | <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | ~> 0.94.1 |
+| <a name="requirement_vault"></a> [vault](#requirement\_vault) | ~> 4.3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.94.1 |
+| <a name="provider_vault"></a> [vault](#provider\_vault) | 4.3.0 |
 
 ## Modules
 
@@ -114,23 +116,43 @@ No modules.
 | [hcp_hvn.hcp-hvn](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/hvn) | resource |
 | [hcp_vault_cluster.hcp-vault-cluster](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster) | resource |
 | [hcp_vault_cluster_admin_token.bootstrap-token](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster_admin_token) | resource |
+| [vault_approle_auth_backend_role.approle](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/approle_auth_backend_role) | resource |
+| [vault_approle_auth_backend_role_secret_id.id](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/approle_auth_backend_role_secret_id) | resource |
+| [vault_auth_backend.approle](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/auth_backend) | resource |
+| [vault_auth_backend.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/auth_backend) | resource |
+| [vault_azure_auth_backend_config.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_auth_backend_config) | resource |
+| [vault_azure_auth_backend_role.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_auth_backend_role) | resource |
+| [vault_azure_secret_backend.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend) | resource |
+| [vault_azure_secret_backend_role.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
+| [vault_azure_secret_backend_role.azure-vm](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
+| [vault_policy.azure-policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_auth_client_id"></a> [auth\_client\_id](#input\_auth\_client\_id) | The client ID of the Azure service principal for use with the Azure Auth Method. | `string` | n/a | yes |
+| <a name="input_auth_client_secret"></a> [auth\_client\_secret](#input\_auth\_client\_secret) | The client secret of the Azure service principal for use with the Azure Auth Method. | `string` | n/a | yes |
 | <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | value of the cloud provider for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#cloud_provider for more information. | `string` | `"azure"` | no |
 | <a name="input_cloud_region"></a> [cloud\_region](#input\_cloud\_region) | value of the cloud region for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#region for more information. | `string` | `"westeurope"` | no |
 | <a name="input_cluster_id"></a> [cluster\_id](#input\_cluster\_id) | the id of the cluster to create. must be unique within the account. | `string` | n/a | yes |
 | <a name="input_cluster_ip_allowlist"></a> [cluster\_ip\_allowlist](#input\_cluster\_ip\_allowlist) | list of objects containing address and description for the ip allowlist | <pre>list(object({<br>    address     = string<br>    description = string<br>  }))</pre> | <pre>[<br>  {<br>    "address": "0.0.0.0/0",<br>    "description": "allow all traffic"<br>  }<br>]</pre> | no |
-| <a name="input_cluster_tier"></a> [cluster\_tier](#input\_cluster\_tier) | value of the tier for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#tier for more information. | `string` | `"standard_small"` | no |
+| <a name="input_cluster_tier"></a> [cluster\_tier](#input\_cluster\_tier) | value of the tier for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#tier for more information. | `string` | `"dev"` | no |
+| <a name="input_default_token_max_ttl"></a> [default\_token\_max\_ttl](#input\_default\_token\_max\_ttl) | The default auth token max TTL for the Vault cluster, in seconds. Defaults to 24 hours. | `number` | `86400` | no |
+| <a name="input_default_token_ttl"></a> [default\_token\_ttl](#input\_default\_token\_ttl) | The default auth token TTL for the Vault cluster, in seconds. Defaults to 1 hour. | `number` | `3600` | no |
 | <a name="input_expose_public_endpoint"></a> [expose\_public\_endpoint](#input\_expose\_public\_endpoint) | value of the public endpoint for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#public_endpoint for more information. | `bool` | `true` | no |
 | <a name="input_hvn_cidr_block"></a> [hvn\_cidr\_block](#input\_hvn\_cidr\_block) | The CIDR block for the HashiCorp Virtual Network. Should not overlap with any existing networks for peering purposes. | `string` | n/a | yes |
+| <a name="input_secret_client_id"></a> [secret\_client\_id](#input\_secret\_client\_id) | The client ID of the Azure service principal for use with the Azure Secrets Engine. | `string` | n/a | yes |
+| <a name="input_secret_client_secret"></a> [secret\_client\_secret](#input\_secret\_client\_secret) | The client secret of the Azure service principal for use with the Azure Secrets Engine. | `string` | n/a | yes |
+| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The subscription ID of your Azure account for use with the Azure Auth Method. | `string` | n/a | yes |
+| <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | The tenant ID of your Azure account for use with the Azure Auth Method. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_approle_role_id"></a> [approle\_role\_id](#output\_approle\_role\_id) | n/a |
+| <a name="output_approle_secret_id"></a> [approle\_secret\_id](#output\_approle\_secret\_id) | n/a |
 | <a name="output_bootstrap_token"></a> [bootstrap\_token](#output\_bootstrap\_token) | n/a |
 | <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | n/a |
 | <a name="output_hvn_id"></a> [hvn\_id](#output\_hvn\_id) | n/a |
