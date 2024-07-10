@@ -123,8 +123,8 @@ No modules.
 | [vault_azure_auth_backend_config.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_auth_backend_config) | resource |
 | [vault_azure_auth_backend_role.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_auth_backend_role) | resource |
 | [vault_azure_secret_backend.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend) | resource |
-| [vault_azure_secret_backend_role.azure](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
-| [vault_azure_secret_backend_role.azure-vm](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
+| [vault_azure_secret_backend_role.spn](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
+| [vault_azure_secret_backend_role.terraform](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role) | resource |
 | [vault_policy.azure-policy](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/policy) | resource |
 
 ## Inputs
@@ -144,8 +144,8 @@ No modules.
 | <a name="input_hvn_cidr_block"></a> [hvn\_cidr\_block](#input\_hvn\_cidr\_block) | The CIDR block for the HashiCorp Virtual Network. Should not overlap with any existing networks for peering purposes. | `string` | n/a | yes |
 | <a name="input_secret_client_id"></a> [secret\_client\_id](#input\_secret\_client\_id) | The client ID of the Azure service principal for use with the Azure Secrets Engine. | `string` | n/a | yes |
 | <a name="input_secret_client_secret"></a> [secret\_client\_secret](#input\_secret\_client\_secret) | The client secret of the Azure service principal for use with the Azure Secrets Engine. | `string` | n/a | yes |
-| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The subscription ID of your Azure account for use with the Azure Auth Method. | `string` | n/a | yes |
-| <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | The tenant ID of your Azure account for use with the Azure Auth Method. | `string` | n/a | yes |
+| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The subscription ID of your Azure account for use with both the Azure Auth Method and Azure Secrets Engine. | `string` | n/a | yes |
+| <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | The tenant ID of your Azure account for use with both the Azure Auth Method and Azure Secrets Engine. | `string` | n/a | yes |
 
 ## Outputs
 

@@ -107,12 +107,12 @@ Azure Secrets Engine and Azure Auth Method Variables
 */
 // General
 variable "tenant_id" {
-  description = "The tenant ID of your Azure account for use with the Azure Auth Method."
+  description = "The tenant ID of your Azure account for use with both the Azure Auth Method and Azure Secrets Engine."
   type        = string
 }
 
 variable "subscription_id" {
-  description = "The subscription ID of your Azure account for use with the Azure Auth Method."
+  description = "The subscription ID of your Azure account for use with both the Azure Auth Method and Azure Secrets Engine."
   type        = string
 }
 
