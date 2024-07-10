@@ -11,7 +11,7 @@ resource "vault_azure_secret_backend" "azure" {
 
 
 # https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role
-resource "vault_azure_secret_backend_role" "azure" {
+resource "vault_azure_secret_backend_role" "terraform" {
   backend = vault_azure_secret_backend.azure.path
   role    = "hcp-terraform-role"
   ttl     = 600
@@ -24,7 +24,7 @@ resource "vault_azure_secret_backend_role" "azure" {
 }
 
 # https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role
-resource "vault_azure_secret_backend_role" "azure-vm" {
+resource "vault_azure_secret_backend_role" "spn" {
   backend = vault_azure_secret_backend.azure.path
   role    = "spn-role"
   ttl     = 600
