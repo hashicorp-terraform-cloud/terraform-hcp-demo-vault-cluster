@@ -13,7 +13,6 @@ resource "vault_azure_secret_backend" "azure" {
   }
 }
 
-
 # https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role
 resource "vault_azure_secret_backend_role" "terraform" {
   backend = vault_azure_secret_backend.azure.path
