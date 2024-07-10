@@ -18,3 +18,11 @@ output "bootstrap_token" {
   value     = hcp_vault_cluster_admin_token.bootstrap-token.token
   sensitive = true
 }
+
+output "approle_role_id" {
+  value = nonsensitive(vault_approle_auth_backend_role.approle.role_id)
+}
+
+output "approle_secret_id" {
+  value = nonsensitive(vault_approle_auth_backend_role_secret_id.id.secret_id)
+}
