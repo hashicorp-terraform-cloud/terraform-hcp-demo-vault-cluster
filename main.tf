@@ -18,6 +18,6 @@ provider "hcp" {}
 // Configure the Vault provider
 provider "vault" {
   address    = hcp_vault_cluster.hcp-vault-cluster.public_endpoint
-  token      = hcp_vault_cluster_admin_token.bootstrap-token
+  token      = hcp_vault_cluster_admin_token.bootstrap-token.token
   token_name = "hcp-tf-bootstrap-token"
 }
