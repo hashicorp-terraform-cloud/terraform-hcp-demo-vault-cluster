@@ -20,7 +20,6 @@ The following environment variables should be captured either locally (for local
 
 The HCP Project ID can be captured from the Project Settings page - https://developer.hashicorp.com/hcp/docs/hcp/admin/projects#create-a-project
 
-
 ## HCP Terraform Usage
 
 1. **Sign up for HCP Terraform**: If you haven't already, sign up for a Terraform Cloud account at https://app.terraform.io/signup/account.
