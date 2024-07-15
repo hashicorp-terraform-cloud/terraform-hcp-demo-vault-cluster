@@ -19,6 +19,9 @@ terraform {
 // Configure the HCP provider
 provider "hcp" {}
 
+// Configure the Random provider
+provider "random" {}
+
 // Configure the Vault provider
 provider "vault" {
   address    = hcp_vault_cluster.hcp-vault-cluster.vault_public_endpoint_url
