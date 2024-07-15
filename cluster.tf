@@ -1,3 +1,6 @@
+# Generate a random UUID for this cluster
+resource "random_uuid" "this" {}
+
 # Create the HashiCorp Virtual Network
 resource "hcp_hvn" "hcp-hvn" {
   hvn_id         = "hvn-${var.cloud_provider}-${var.cloud_region}"
@@ -8,7 +11,7 @@ resource "hcp_hvn" "hcp-hvn" {
 
 # Create the HashiCorp Vault Cluster
 resource "hcp_vault_cluster" "hcp-vault-cluster" {
-  cluster_id      = var.cluster_id
+  cluster_id      = random_uuid.this.result
   hvn_id          = hcp_hvn.hcp-hvn.hvn_id
   tier            = var.cluster_tier
   public_endpoint = var.expose_public_endpoint

@@ -60,11 +60,6 @@ variable "hvn_cidr_block" {
 /**
 Vault Cluster Variables
 */
-variable "cluster_id" {
-  description = "the id of the cluster to create. must be unique within the account."
-  type        = string
-}
-
 variable "cluster_tier" {
   description = "value of the tier for the cluster. see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#tier for more information."
   type        = string
