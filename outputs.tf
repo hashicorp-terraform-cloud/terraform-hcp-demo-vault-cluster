@@ -1,7 +1,3 @@
-output "generated_cluster_id" {
-  value = random_uuid.this.result
-}
-
 output "public_endpoint_url" {
   value = hcp_vault_cluster.hcp-vault-cluster.vault_public_endpoint_url
 }
