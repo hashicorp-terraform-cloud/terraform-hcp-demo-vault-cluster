@@ -8,3 +8,16 @@ path "azure/*" {
 EOT
 
 }
+
+resource "vault_policy" "hcp-tf-policy" {
+
+  name = "hcp-tf-policy"
+
+  policy = <<EOT
+
+path "*" {
+  capabilities = ["read","create","update","delete","list","patch"]
+}
+EOT
+
+}

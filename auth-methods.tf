@@ -72,19 +72,6 @@ resource "vault_jwt_auth_backend" "jwt" {
   bound_issuer       = "https://app.terraform.io"
 }
 
-resource "vault_policy" "hcp-tf-policy" {
-
-  name = "hcp-tf-policy"
-
-  policy = <<EOT
-
-path "*" {
-  capabilities = ["read","create","update","delete","list","patch"]
-}
-EOT
-
-}
-
 resource "vault_jwt_auth_backend_role" "workspace" {
   backend        = vault_jwt_auth_backend.jwt.path
   role_name      = "vault-jwt-auth-workspace"
