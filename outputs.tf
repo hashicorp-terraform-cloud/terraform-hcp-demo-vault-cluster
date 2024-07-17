@@ -26,3 +26,13 @@ output "approle_role_id" {
 output "approle_secret_id" {
   value = nonsensitive(vault_approle_auth_backend_role_secret_id.id.secret_id)
 }
+
+output "dynamic_provider_credemntials_env_vars" {
+  value = <<EOF
+TFC_VAULT_PROVIDER_AUTH=true
+TFC_VAULT_ADDR=${hcp_vault_cluster.hcp-vault-cluster.vault_public_endpoint_url}
+TFC_VAULT_NAMESPACE=admin
+TFC_VAULT_RUN_ROLE=${vault_jwt_auth_backend_role.workspace.role_name}
+TFC_VAULT_AUTH_PATH=${vault_jwt_auth_backend.jwt.path}
+  EOF
+}

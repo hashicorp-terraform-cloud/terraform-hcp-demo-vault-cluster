@@ -138,3 +138,12 @@ variable "secret_client_secret" {
 /**
 AppRole Auth Method Variables
 */
+
+/**
+JWT Auth Method Variables
+*/
+
+variable "hcptf_organisation_id" {
+  description = "value of the Terraform Cloud organization ID"
+  type        = string
+}

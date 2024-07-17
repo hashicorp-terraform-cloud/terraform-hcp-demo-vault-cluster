@@ -61,3 +61,42 @@ resource "vault_approle_auth_backend_role_secret_id" "id" {
   backend   = vault_auth_backend.approle.path
   role_name = vault_approle_auth_backend_role.approle.role_name
 }
+
+/**
+JWT auth method for HCP Terraform
+*/
+resource "vault_jwt_auth_backend" "jwt" {
+  description        = "JWT Auth Backend for Dynamic Provider Credentials"
+  path               = "jwt"
+  oidc_discovery_url = "https://app.terraform.io"
+  bound_issuer       = "https://app.terraform.io"
+}
+
+resource "vault_policy" "hcp-tf-policy" {
+
+  name = "hcp-tf-policy"
+
+  policy = <<EOT
+
+path "*" {
+  capabilities = ["read","create","update","delete","list","patch"]
+}
+EOT
+
+}
+
+resource "vault_jwt_auth_backend_role" "workspace" {
+  backend        = vault_jwt_auth_backend.jwt.path
+  role_name      = "vault-jwt-auth-workspace"
+  token_policies = ["hcp-tf-policy"]
+
+  bound_audiences   = ["vault.workload.identity"]
+  bound_claims_type = "glob"
+  bound_claims = {
+    sub = "organization:${var.hcptf_organisation_id}:project:*:workspace:*:run_phase:*"
+  }
+  user_claim    = "terraform_project_name"
+  role_type     = "jwt"
+  token_ttl     = 300
+  token_max_ttl = 3600
+}
