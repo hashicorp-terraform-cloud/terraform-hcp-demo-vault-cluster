@@ -5,6 +5,10 @@ resource "vault_policy" "azure-policy" {
 path "azure/*" {
   capabilities = ["read","create","list","update"]
 }
+
+path "kvv2/+/*" {
+  capabilities = ["read"]
+}
 EOT
 
 }

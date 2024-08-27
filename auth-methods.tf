@@ -50,7 +50,7 @@ resource "vault_auth_backend" "approle" {
 
 resource "vault_approle_auth_backend_role" "approle" {
   backend            = vault_auth_backend.approle.path
-  role_name          = "servicenow-role"
+  role_name          = "agent-role"
   token_policies     = ["default", "azure-policy"]
   secret_id_num_uses = 0
   token_ttl          = var.default_token_ttl
