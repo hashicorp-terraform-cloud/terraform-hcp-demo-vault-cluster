@@ -51,10 +51,11 @@ resource "vault_auth_backend" "approle" {
 resource "vault_approle_auth_backend_role" "approle" {
   backend            = vault_auth_backend.approle.path
   role_name          = "agent-role"
-  token_policies     = ["default", "azure-policy"]
+  token_policies     = ["default", "azure-policy", "agent-management-policy"]
   secret_id_num_uses = 0
-  token_ttl          = var.default_token_ttl
-  token_max_ttl      = var.default_token_max_ttl
+  secret_id_ttl      = 600
+  token_ttl          = 300
+  token_max_ttl      = 600
 }
 
 resource "vault_approle_auth_backend_role_secret_id" "id" {

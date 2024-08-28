@@ -13,6 +13,18 @@ EOT
 
 }
 
+resource "vault_policy" "agent-management-policy" {
+  name = "agent-management-policy"
+
+  policy = <<EOT
+path "auth/approle/role/agent-role/secret-id" {
+  capabilities = ["read","create","list","update"]
+}
+
+EOT
+
+}
+
 resource "vault_policy" "hcp-tf-policy" {
 
   name = "hcp-tf-policy"
