@@ -18,7 +18,7 @@ resource "vault_policy" "agent-management-policy" {
 
   policy = <<EOT
 path "auth/approle/role/agent-role/secret-id" {
-  capabilities = ["read","create","list","update"]
+  capabilities = ["read","create","update"]
 }
 
 EOT
