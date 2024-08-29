@@ -58,6 +58,16 @@ resource "vault_approle_auth_backend_role" "approle" {
   token_max_ttl      = 600
 }
 
+resource "vault_approle_auth_backend_role" "approle" {
+  backend            = vault_auth_backend.approle.path
+  role_name          = "proxy-role"
+  token_policies     = ["default", "azure-policy", "agent-management-policy"]
+  secret_id_num_uses = 0
+  secret_id_ttl      = 600
+  token_ttl          = 300
+  token_max_ttl      = 600
+}
+
 resource "vault_approle_auth_backend_role_secret_id" "id" {
   backend   = vault_auth_backend.approle.path
   role_name = vault_approle_auth_backend_role.approle.role_name
