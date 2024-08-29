@@ -48,7 +48,7 @@ resource "vault_auth_backend" "approle" {
   }
 }
 
-resource "vault_approle_auth_backend_role" "approle" {
+resource "vault_approle_auth_backend_role" "agent" {
   backend            = vault_auth_backend.approle.path
   role_name          = "agent-role"
   token_policies     = ["default", "azure-policy", "agent-management-policy"]
@@ -58,7 +58,7 @@ resource "vault_approle_auth_backend_role" "approle" {
   token_max_ttl      = 600
 }
 
-resource "vault_approle_auth_backend_role" "approle" {
+resource "vault_approle_auth_backend_role" "proxy" {
   backend            = vault_auth_backend.approle.path
   role_name          = "proxy-role"
   token_policies     = ["default", "azure-policy", "agent-management-policy"]
