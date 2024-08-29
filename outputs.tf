@@ -20,7 +20,7 @@ output "bootstrap_token" {
 }
 
 output "agent_approle_role_id" {
-  value = nonsensitive(vault_approle_auth_backend_role.approle.role_id)
+  value = nonsensitive(vault_approle_auth_backend_role.agent.role_id)
 }
 
 output "agent_approle_secret_id" {
