@@ -27,6 +27,14 @@ output "agent_approle_secret_id" {
   value = nonsensitive(vault_approle_auth_backend_role_secret_id.agent_secret_id.secret_id)
 }
 
+output "proxy_approle_role_id" {
+  value = nonsensitive(vault_approle_auth_backend_role.proxy.role_id)
+}
+
+output "proxy_approle_secret_id" {
+  value = nonsensitive(vault_approle_auth_backend_role_secret_id.proxy_secret_id.secret_id)
+}
+
 output "dynamic_provider_credemntials_env_vars" {
   value = <<EOF
 TFC_VAULT_PROVIDER_AUTH=true
