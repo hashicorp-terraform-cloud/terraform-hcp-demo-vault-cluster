@@ -68,9 +68,14 @@ resource "vault_approle_auth_backend_role" "proxy" {
   token_max_ttl      = 600
 }
 
-resource "vault_approle_auth_backend_role_secret_id" "id" {
+resource "vault_approle_auth_backend_role_secret_id" "agent_secret_id" {
   backend   = vault_auth_backend.approle.path
-  role_name = vault_approle_auth_backend_role.approle.role_name
+  role_name = vault_approle_auth_backend_role.agent.role_name
+}
+
+resource "vault_approle_auth_backend_role_secret_id" "proxy_secret_id" {
+  backend   = vault_auth_backend.approle.path
+  role_name = vault_approle_auth_backend_role.proxy.role_name
 }
 
 /**
