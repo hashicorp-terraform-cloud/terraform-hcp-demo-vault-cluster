@@ -17,10 +17,13 @@ resource "vault_policy" "agent-management-policy" {
   name = "agent-management-policy"
 
   policy = <<EOT
-path "auth/approle/role/+/secret-id" {
+path "auth/approle/role/agent-role/secret-id" {
   capabilities = ["create","update"]
 }
 
+path "auth/approle/role/proxy-role/secret-id" {
+  capabilities = ["create","update"]
+}
 EOT
 
 }
