@@ -123,6 +123,11 @@ variable "auth_client_secret" {
   sensitive   = true
 }
 
+variable "auth_ado_bound_spns" {
+  description = "The list of Azure DevOps service principals to bind to the Azure Auth Method for ADO."
+  type        = list(string)
+}
+
 // Secrets Engine
 variable "secret_client_id" {
   description = "The client ID of the Azure service principal for use with the Azure Secrets Engine."
