@@ -10,7 +10,7 @@ resource "vault_auth_backend" "azure" {
 }
 
 resource "vault_auth_backend" "ado" {
-  type = "ado"
+  type = "azure"
 
   tune {
     listing_visibility = "unauth"
