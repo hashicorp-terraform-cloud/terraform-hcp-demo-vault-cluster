@@ -11,6 +11,7 @@ resource "vault_auth_backend" "azure" {
 
 resource "vault_auth_backend" "ado" {
   type = "azure"
+  path = "ado"
 
   tune {
     listing_visibility = "unauth"
