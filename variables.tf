@@ -126,6 +126,7 @@ variable "auth_client_secret" {
 variable "auth_ado_bound_spns" {
   description = "The list of Azure DevOps service principals to bind to the Azure Auth Method for ADO."
   type        = list(string)
+  default     = [""]
 }
 
 // Secrets Engine
