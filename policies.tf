@@ -2,11 +2,11 @@ resource "vault_policy" "azure-policy" {
   name = "standard-policy"
 
   policy = <<EOT
-path "admin/${vault_namespace.tenant.path}/azure/*" {
+path "${vault_namespace.tenant.path}/azure/*" {
   capabilities = ["read","create","list","update"]
 }
 
-path "admin/${vault_namespace.tenant.path}/kvv2/+/{{identity.entity.name}}/*" {
+path "${vault_namespace.tenant.path}/kvv2/+/{{identity.entity.name}}/*" {
     capabilities = [ "create", "update", "read", "delete", "list" ]
 }
 EOT
