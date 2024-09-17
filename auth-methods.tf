@@ -94,24 +94,9 @@ resource "vault_approle_auth_backend_role" "agent" {
   token_max_ttl      = 600
 }
 
-resource "vault_approle_auth_backend_role" "proxy" {
-  backend            = vault_auth_backend.approle.path
-  role_name          = "proxy-role"
-  token_policies     = ["standard-policy", "agent-management-policy"]
-  secret_id_num_uses = 0
-  secret_id_ttl      = 600
-  token_ttl          = 300
-  token_max_ttl      = 600
-}
-
 resource "vault_approle_auth_backend_role_secret_id" "agent_secret_id" {
   backend   = vault_auth_backend.approle.path
   role_name = vault_approle_auth_backend_role.agent.role_name
-}
-
-resource "vault_approle_auth_backend_role_secret_id" "proxy_secret_id" {
-  backend   = vault_auth_backend.approle.path
-  role_name = vault_approle_auth_backend_role.proxy.role_name
 }
 
 /**
