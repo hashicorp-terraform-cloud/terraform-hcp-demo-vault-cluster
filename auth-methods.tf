@@ -52,7 +52,7 @@ resource "vault_azure_auth_backend_role" "azure" {
   token_max_ttl = var.default_token_max_ttl
 
   token_policies = [
-    "default", "azure-policy"
+    "standard-policy"
   ]
 
   bound_subscription_ids = [
@@ -67,7 +67,7 @@ resource "vault_azure_auth_backend_role" "ado" {
   token_max_ttl = var.default_token_max_ttl
 
   token_policies = [
-    "default", "azure-policy"
+    "standard-policy"
   ]
 
   bound_service_principal_ids = var.auth_ado_bound_spns
@@ -87,7 +87,7 @@ resource "vault_auth_backend" "approle" {
 resource "vault_approle_auth_backend_role" "agent" {
   backend            = vault_auth_backend.approle.path
   role_name          = "agent-role"
-  token_policies     = ["default", "azure-policy", "agent-management-policy"]
+  token_policies     = ["standard-policy", "agent-management-policy"]
   secret_id_num_uses = 0
   secret_id_ttl      = 600
   token_ttl          = 300
@@ -97,7 +97,7 @@ resource "vault_approle_auth_backend_role" "agent" {
 resource "vault_approle_auth_backend_role" "proxy" {
   backend            = vault_auth_backend.approle.path
   role_name          = "proxy-role"
-  token_policies     = ["default", "azure-policy", "agent-management-policy"]
+  token_policies     = ["standard-policy", "agent-management-policy"]
   secret_id_num_uses = 0
   secret_id_ttl      = 600
   token_ttl          = 300
