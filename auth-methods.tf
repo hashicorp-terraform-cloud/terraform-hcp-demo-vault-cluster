@@ -14,7 +14,7 @@ resource "vault_auth_backend" "ado" {
   path = "ado"
 
   tune {
-    listing_visibility = "unauth"
+    listing_visibility = "hidden"
   }
 }
 
@@ -47,7 +47,7 @@ resource "vault_azure_auth_backend_config" "ado" {
 
 resource "vault_azure_auth_backend_role" "azure" {
   backend       = vault_auth_backend.azure.path
-  role          = "azure-role"
+  role          = "vm-role"
   token_ttl     = var.default_token_ttl
   token_max_ttl = var.default_token_max_ttl
 
@@ -80,7 +80,7 @@ resource "vault_auth_backend" "approle" {
   type = "approle"
 
   tune {
-    listing_visibility = "unauth"
+    listing_visibility = "hidden"
   }
 }
 

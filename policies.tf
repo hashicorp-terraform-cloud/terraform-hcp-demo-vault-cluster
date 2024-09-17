@@ -1,28 +1,13 @@
 resource "vault_policy" "azure-policy" {
-  name = "azure-policy"
+  name = "standard-policy"
 
   policy = <<EOT
-path "azure/*" {
+path "${vault_namespace.tenant.path}/azure/*" {
   capabilities = ["read","create","list","update"]
 }
 
-path "kvv2/+/*" {
-  capabilities = ["read"]
-}
-EOT
-
-}
-
-resource "vault_policy" "agent-management-policy" {
-  name = "agent-management-policy"
-
-  policy = <<EOT
-path "auth/approle/role/agent-role/secret-id" {
-  capabilities = ["create","update"]
-}
-
-path "auth/approle/role/proxy-role/secret-id" {
-  capabilities = ["create","update"]
+path "${vault_namespace.tenant.path}/kvv2/+/{{identity.entity.name}}/*" {
+    capabilities = [ "create", "update", "read", "delete", "list" ]
 }
 EOT
 
