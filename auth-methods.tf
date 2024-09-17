@@ -61,10 +61,10 @@ resource "vault_azure_auth_backend_role" "azure" {
 }
 
 resource "vault_azure_auth_backend_role" "ado" {
-  backend       = vault_auth_backend.ado.path
-  role          = "pipeline-role"
-  token_ttl     = var.default_token_ttl
-  token_max_ttl = var.default_token_max_ttl
+  backend    = vault_auth_backend.ado.path
+  role       = "pipeline-role"
+  token_ttl  = 600
+  token_type = "batch"
 
   token_policies = [
     "standard-policy"
