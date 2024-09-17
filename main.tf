@@ -28,5 +28,3 @@ provider "vault" {
   token      = hcp_vault_cluster_admin_token.bootstrap-token.token
   token_name = "hcp-tf-bootstrap-token"
 }
-
-data "vault_namespace" "current" {}
