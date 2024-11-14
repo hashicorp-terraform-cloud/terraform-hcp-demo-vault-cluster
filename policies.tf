@@ -6,8 +6,16 @@ path "${vault_namespace.tenant.path}/azure/*" {
   capabilities = ["read","create","list","update"]
 }
 
-path "${vault_namespace.tenant.path}/kvv2/data/{{identity.entity.name}}/*" {
+path "${vault_namespace.tenant.path}/${vault_mount.kvv2.path}/+/*" {
     capabilities = [ "create", "update", "read", "delete", "list" ]
+}
+
+path "${vault_namespace.tenant.path}/keymgmt/*" {
+    capabilities = [ "create", "update", "read", "delete", "list" ]
+}
+
+path "${vault_namespace.tenant.path}/${vault_mount.kvv2.path}/metadata" {
+    capabilities = [ "list" ]
 }
 EOT
 
