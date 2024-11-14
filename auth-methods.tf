@@ -25,10 +25,6 @@ resource "vault_azure_auth_backend_config" "azure" {
   client_secret = var.auth_client_secret
   resource      = "https://management.azure.com/"
 
-  lifecycle {
-    // if we rotate the client secret outside of terraform in line with best practices, we don't want to trigger a change
-    ignore_changes = [client_secret]
-  }
 }
 
 
@@ -39,10 +35,6 @@ resource "vault_azure_auth_backend_config" "ado" {
   client_secret = var.auth_client_secret
   resource      = "https://management.core.windows.net/"
 
-  lifecycle {
-    // if we rotate the client secret outside of terraform in line with best practices, we don't want to trigger a change
-    ignore_changes = [client_secret]
-  }
 }
 
 resource "vault_azure_auth_backend_role" "azure" {
