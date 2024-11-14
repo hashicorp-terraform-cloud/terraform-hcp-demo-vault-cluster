@@ -13,9 +13,6 @@ resource "vault_azure_secret_backend" "azure" {
 
   path = "azure"
 
-  lifecycle {
-    ignore_changes = [client_secret]
-  }
 }
 
 # https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/azure_secret_backend_role
